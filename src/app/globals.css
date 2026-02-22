@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Karla:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================================
+   TAILWIND THEME — static values only, no var() references.
+   Tailwind v4 reads @theme at build time; var() won't resolve.
+   These are light-mode defaults. Runtime theming is handled
+   separately via :root overrides below.
+   ============================================================ */
+@theme {
+  --color-primary: #5D7BD5;
+  --color-secondary: #C2FFEE;
+  --color-accent: #EBC2FF;
+  --color-info: #A385E5;
+  --color-surface: #75DBCD;
+
+  --color-bg-primary: #FAFBFF;
+  --color-bg-secondary: #F5F7FE;
+
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #4A5568;
+  --color-text-muted: #718096;
+
+  --color-border: rgba(163, 133, 229, 0.15);
+  --color-border-hover: rgba(163, 133, 229, 0.3);
+
+  --shadow-sm: 0 1px 2px 0 rgba(163, 133, 229, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(163, 133, 229, 0.1), 0 2px 4px -1px rgba(117, 219, 205, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(163, 133, 229, 0.15), 0 4px 6px -2px rgba(117, 219, 205, 0.08);
+  --shadow-xl: 0 20px 25px -5px rgba(163, 133, 229, 0.2), 0 10px 10px -5px rgba(117, 219, 205, 0.1);
+
+  --font-sans: 'Karla', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ============================================================
+   LIGHT THEME — runtime overrides
+   These override @theme values at runtime in the browser.
+   ============================================================ */
+:root {
+  --color-primary: #5D7BD5;
+  --color-secondary: #C2FFEE;
+  --color-accent: #EBC2FF;
+  --color-info: #A385E5;
+  --color-surface: #75DBCD;
+
+  --color-bg-primary: #FAFBFF;
+  --color-bg-secondary: #F5F7FE;
+  --color-bg-gradient-start: #C2FFEE;
+  --color-bg-gradient-end: #EBC2FF;
+
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #4A5568;
+  --color-text-muted: #718096;
+
+  --color-border: rgba(163, 133, 229, 0.15);
+  --color-border-hover: rgba(163, 133, 229, 0.3);
+
+  --shadow-sm: 0 1px 2px 0 rgba(163, 133, 229, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(163, 133, 229, 0.1), 0 2px 4px -1px rgba(117, 219, 205, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(163, 133, 229, 0.15), 0 4px 6px -2px rgba(117, 219, 205, 0.08);
+  --shadow-xl: 0 20px 25px -5px rgba(163, 133, 229, 0.2), 0 10px 10px -5px rgba(117, 219, 205, 0.1);
+
+  /* Glass uses explicit rgba so it adapts — not a color token */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================
+   DARK THEME — system preference
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #7B9FFF;
+    --color-secondary: #9DFFF0;
+    --color-accent: #D48FFF;
+    --color-info: #B9A3FF;
+    --color-surface: #5EFDE8;
+
+    --color-bg-primary: #0D0F1C;
+    --color-bg-secondary: #131628;
+    --color-bg-gradient-start: #9DFFF0;
+    --color-bg-gradient-end: #D48FFF;
+
+    --color-text-primary: #EEF0FF;
+    --color-text-secondary: #A8B0D8;
+    --color-text-muted: #636B8C;
+
+    --color-border: rgba(185, 163, 255, 0.12);
+    --color-border-hover: rgba(185, 163, 255, 0.28);
+
+    --shadow-sm: 0 1px 2px 0 rgba(123, 159, 255, 0.08);
+    --shadow-md: 0 4px 16px -2px rgba(123, 159, 255, 0.18), 0 2px 6px -1px rgba(94, 253, 232, 0.08);
+    --shadow-lg: 0 10px 30px -4px rgba(123, 159, 255, 0.25), 0 4px 12px -2px rgba(94, 253, 232, 0.12);
+    --shadow-xl: 0 20px 50px -6px rgba(123, 159, 255, 0.3), 0 10px 20px -4px rgba(94, 253, 232, 0.15);
+
+    --glass-bg: rgba(13, 15, 28, 0.75);
+    --glass-border: rgba(185, 163, 255, 0.12);
+  }
+}
+
+/* ============================================================
+   DARK THEME — manual class toggle (JS-driven)
+   ============================================================ */
+.dark {
+  --color-primary: #7B9FFF;
+  --color-secondary: #9DFFF0;
+  --color-accent: #D48FFF;
+  --color-info: #B9A3FF;
+  --color-surface: #5EFDE8;
+
+  --color-bg-primary: #0D0F1C;
+  --color-bg-secondary: #131628;
+  --color-bg-gradient-start: #9DFFF0;
+  --color-bg-gradient-end: #D48FFF;
+
+  --color-text-primary: #EEF0FF;
+  --color-text-secondary: #A8B0D8;
+  --color-text-muted: #636B8C;
+
+  --color-border: rgba(185, 163, 255, 0.12);
+  --color-border-hover: rgba(185, 163, 255, 0.28);
+
+  --shadow-sm: 0 1px 2px 0 rgba(123, 159, 255, 0.08);
+  --shadow-md: 0 4px 16px -2px rgba(123, 159, 255, 0.18), 0 2px 6px -1px rgba(94, 253, 232, 0.08);
+  --shadow-lg: 0 10px 30px -4px rgba(123, 159, 255, 0.25), 0 4px 12px -2px rgba(94, 253, 232, 0.12);
+  --shadow-xl: 0 20px 50px -6px rgba(123, 159, 255, 0.3), 0 10px 20px -4px rgba(94, 253, 232, 0.15);
+
+  --glass-bg: rgba(13, 15, 28, 0.75);
+  --glass-border: rgba(185, 163, 255, 0.12);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: clamp(1.875rem, 4vw, 2.25rem);
+    letter-spacing: -0.015em;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+  }
+
+  h4 {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-text-primary);
+  }
+}
+
+/* ============================================================
+   COMPONENT STYLES
+   ============================================================ */
+@layer components {
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .gradient-mesh {
+    background: radial-gradient(at 20% 30%, var(--color-secondary) 0px, transparent 90%),
+    radial-gradient(at 80% 70%, var(--color-accent) 0px, transparent 90%),
+    radial-gradient(at 50% 50%, var(--color-surface) 0px, transparent 90%);
+  }
+
+  .hero-header {
+    background: linear-gradient(135deg, var(--color-info), var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-info), var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    background-color: var(--color-info);
+    color: white;
+    transition: all 0.3s ease-out;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-0.125rem);
+    filter: brightness(1.1);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+  }
+
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    transition: all 0.3s ease-out;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-0.125rem);
+    filter: brightness(1.05);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+  }
+
+  .card {
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+  }
+
+  @media (min-width: 768px) {
+    .card {
+      padding: 2rem;
+    }
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-hover);
+  }
+}
+
+/* ============================================================
+   UTILITY STYLES
+   ============================================================ */
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* ============================================================
+   ADDITIONAL COMPONENT CLASSES
+   Pure CSS hover — no JS event handlers needed (server-safe)
+   ============================================================ */
+@layer components {
+
+  /* CTA section — solid button */
+  .btn-cta-primary {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    background-color: var(--color-info);
+    color: white;
+    box-shadow: var(--shadow-lg);
+    transition: filter 0.3s ease-out, transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  .btn-cta-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .btn-cta-primary:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+  }
+
+  /* CTA section — outline button */
+  .btn-cta-outline {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-border-hover);
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s ease-out, transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  .btn-cta-outline:hover {
+    background-color: var(--color-bg-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-cta-outline:active {
+    transform: translateY(0);
+  }
+
+  /* Social icon links */
+  .social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: color-mix(in srgb, var(--color-info) 10%, transparent);
+    color: var(--color-primary);
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+  }
+
+  .social-link:hover {
+    background-color: var(--color-info);
+    color: white;
+  }
+
+  /* Nav link hover */
+  .nav-link {
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color 0.3s ease-out, background-color 0.3s ease-out;
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-info) 10%, transparent);
+  }
+
+  /* Mobile nav link */
+  .nav-link-mobile {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color 0.3s ease-out, background-color 0.3s ease-out;
+  }
+
+  .nav-link-mobile:hover {
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-info) 10%, transparent);
+  }
+}
