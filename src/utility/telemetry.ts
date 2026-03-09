@@ -9,6 +9,7 @@ class TelemetryStore {
 	private _state: TelemetryState = {
 		connected: false,
 		data: {
+			os: "Unknown",
 			status: "Offline",
 			ramUsage: 0,
 			totalRam: 0,
