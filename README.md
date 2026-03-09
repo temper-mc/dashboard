@@ -11,7 +11,7 @@ A web-based dashboard for Temper MC server management and monitoring.
 ### Setup
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/temper-mc/dashboard.git
 cd temper-mc-dashboard
 bun install
 # or "npm install"
