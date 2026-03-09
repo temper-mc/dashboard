@@ -1,4 +1,4 @@
-import {TpsDataPoint} from "@/types/TpsDataPoint";
+import type { TpsDataPoint } from "@/types/TpsDataPoint";
 
 export interface TelemetryData {
 	status: string;
@@ -8,10 +8,12 @@ export interface TelemetryData {
 	cpuModel: string;
 	cpuCores: number;
 	cpuThreads: number;
+	os: string;
 	uptime: number;
 	onlinePlayers: number;
 	maxPlayers: number;
 	tps: number;
 	storageUsed?: number;
 	tpsHistory: TpsDataPoint[];
+	players: { name: string; uuid: string }[];
 }
