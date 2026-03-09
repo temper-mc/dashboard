@@ -66,7 +66,7 @@ class TelemetryStore {
 		this.socket = new WebSocket(`${protocol}//${address}/ws`);
 
 		this.socket.onopen = () => {
-			console.log("Connected to FerrumC Telemetry");
+			console.log("Connected to Temper Telemetry");
 			this._state.connected = true;
 			this._state.data.status = "Running";
 		};
