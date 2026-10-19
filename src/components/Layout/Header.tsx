@@ -1,7 +1,8 @@
 "use client";
 import type { ActivePage } from "@/app/page";
+import { auth } from "@/utility/auth";
 import { telemetry } from "@/utility/telemetry";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const pageTitles: Record<ActivePage, { title: string; subtitle: string }> = {
 	server: { title: "Server Overview", subtitle: "Real-time telemetry" },
@@ -28,7 +29,16 @@ interface HeaderProps {
 export default function Header({ activePage }: HeaderProps) {
 	const { title, subtitle } = pageTitles[activePage];
 	const [data, setData] = useState(telemetry.state.data);
-	const now = new Date();
+	const [now, setNow] = useState(() => new Date());
+
+	useEffect(() => {
+		const tick = setInterval(() => {
+			setData({ ...telemetry.state.data });
+			setNow(new Date());
+		}, 1000);
+		return () => clearInterval(tick);
+	}, []);
+
 	const timeString = now.toLocaleTimeString([], {
 		hour: "2-digit",
 		minute: "2-digit",
@@ -74,6 +84,14 @@ export default function Header({ activePage }: HeaderProps) {
 					<span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
 					{`Live for ${formatUptime(data.uptime)}`}
 				</div>
+
+				<button
+					type="button"
+					onClick={() => auth.logout()}
+					className="px-3 py-1.5 rounded-full text-xs font-medium text-[var(--color-text-muted)] border border-[var(--color-border)] hover:text-[var(--color-text-primary)]"
+				>
+					Log out
+				</button>
 			</div>
 		</header>
 	);

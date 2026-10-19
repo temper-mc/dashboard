@@ -1,6 +1,8 @@
 import { TelemetryState } from "@/types/TelemetryState";
+import { auth, getServerAddress } from "@/utility/auth";
 
-const preferredWsPort: string = "9000";
+// Close code the server uses when the token is rejected or expires
+const CLOSE_UNAUTHORIZED = 4401;
 
 type TpsDataPoint = { time: Date; tps: number };
 
@@ -53,19 +55,13 @@ class TelemetryStore {
 	}
 
 	connect() {
-		if (typeof window === "undefined") return;
+		if (typeof window === "undefined" || !auth.token) return;
 
 		const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-		const addressIp = window.location.hostname;
-		const addressPort =
-			preferredWsPort ||
-			new URLSearchParams(window.location.search).get("ws_port") ||
-			window.location.port;
-		const address = addressPort ? `${addressIp}:${addressPort}` : addressIp;
-
-		this.socket = new WebSocket(`${protocol}//${address}/ws`);
+		this.socket = new WebSocket(`${protocol}//${getServerAddress()}/ws`);
 
 		this.socket.onopen = () => {
+			this.socket?.send(JSON.stringify({ type: "Auth", data: auth.token }));
 			console.log("Connected to Temper Telemetry");
 			this._state.connected = true;
 			this._state.data.status = "Running";
@@ -84,10 +80,14 @@ class TelemetryStore {
 			}
 		};
 
-		this.socket.onclose = () => {
-			console.log("Disconnected. Retrying in 2s...");
+		this.socket.onclose = (event) => {
 			this._state.connected = false;
 			this._state.data.status = "Offline";
+			if (event.code === CLOSE_UNAUTHORIZED) {
+				auth.clear();
+				return;
+			}
+			console.log("Disconnected. Retrying in 2s...");
 			setTimeout(() => this.connect(), 2000);
 		};
 
